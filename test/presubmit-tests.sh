@@ -73,7 +73,7 @@ function post_integration_tests() {
 function unit_tests() {
   local failed=0
   echo "Using overridden unit_tests"
-  go test -v -race ./... || failed=1
+  go test -v -race -coverprofile=coverage.out -covermode=atomic ./... || failed=1
   echo "unit_tests returning $@"
   return ${failed}
 }
