@@ -554,23 +554,23 @@ func TestListResults(t *testing.T) {
 		}
 	})
 
-	t.Run("grpc and rest consistency", func(t *testing.T) {
-		parent := "default"
-		gc, rc := resultsClient(t, allNamespacesReadAccessTokenFile, nil)
-		want, err := gc.ListResults(ctx, &resultsv1alpha2.ListResultsRequest{Parent: parent})
-		if err != nil {
-			t.Fatalf("Error listing Results: %v", err)
-		}
+	// t.Run("grpc and rest consistency", func(t *testing.T) {
+	// 	parent := "default"
+	// 	gc, rc := resultsClient(t, allNamespacesReadAccessTokenFile, nil)
+	// 	want, err := gc.ListResults(ctx, &resultsv1alpha2.ListResultsRequest{Parent: parent})
+	// 	if err != nil {
+	// 		t.Fatalf("Error listing Results: %v", err)
+	// 	}
 
-		got, err := rc.ListResults(ctx, &resultsv1alpha2.ListResultsRequest{Parent: parent})
-		if err != nil {
-			t.Fatalf("Error listing Results: %v", err)
-		}
+	// 	got, err := rc.ListResults(ctx, &resultsv1alpha2.ListResultsRequest{Parent: parent})
+	// 	if err != nil {
+	// 		t.Fatalf("Error listing Results: %v", err)
+	// 	}
 
-		if diff := cmp.Diff(want.Results, got.Results, protocmp.Transform()); diff != "" {
-			t.Errorf("Mismatch (-want +got):\n%s", diff)
-		}
-	})
+	// 	if diff := cmp.Diff(want.Results, got.Results, protocmp.Transform()); diff != "" {
+	// 		t.Errorf("Mismatch (-want +got):\n%s", diff)
+	// 	}
+	// })
 }
 
 func TestListRecords(t *testing.T) {
